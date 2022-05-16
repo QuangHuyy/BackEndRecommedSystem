@@ -17,7 +17,13 @@ class RecommenderService:
                 continue
 
             itemDict['code'].append(i['code'])
-            itemDict['description'].append(i['MoTa'])
+            if 'full_name' in i:
+                print("go to if")
+                itemDict['description'].append(i['full_name'])
+            else:
+                print("go to else")
+                itemDict['description'].append(i['MoTa'])
+
 
         print("Undefined 'MoTa': ", f_items)
         self.storage = tf.Storage(itemDict)

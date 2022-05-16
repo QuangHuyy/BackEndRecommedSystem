@@ -90,36 +90,21 @@ class Storage:
         self.items = []
         self.fit_data(items)
 
-        # print("[ Storage __init__ ] - self.tfidf.corpus_counter = ", self.tfidf.corpus_counter)
-
     '''
     items: list<string>
     '''
 
-    # def fit_data(self, items):
-    #     self.tfidf.fit_data(items)
-    #
-    #     for i in items:
-    #         self.tfidf_space.append(self.tfidf.get_tfidf(i))
-    #         self.items.append(i)
-
     def fit_data(self, itemsDictionary):
-        # print("[ Tfidf - fit_data() ] - itemsDictionary = ", itemsDictionary)
 
         listString = itemsDictionary["description"]
         listCode = itemsDictionary["code"]
-
-        # print("[ Tfidf - fit_data() ] - listCode = ", listString[:2])
 
         self.tfidf.fit_data(listString)
 
         for idx in range(len(listString)):
             t_tfidf = self.tfidf.get_tfidf(listString[idx])
-            # print("[ Tfidf - fit_data() ] - t_tfidf = ", t_tfidf)
             self.tfidf_space.append(t_tfidf)
             self.items.append(listCode[idx])
-    #         self.svd.fit(self.tfidf_space)
-    #         self.svd_tfidf_vector = self.svd.transform(self.tfidf_space)
 
     '''
     item: string
